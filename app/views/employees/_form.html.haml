@@ -1,0 +1,21 @@
+= form_for @employee do |f|
+  - if @employee.errors.any?
+    #error_explanation.callout.alert
+      %h2=t('error_explanation', count: @employee.errors.count)
+      %ul
+        - @employee.errors.full_messages.each do |message|
+          %li= message
+
+  = f.label :email
+  = f.email_field :email
+
+  = f.label :password
+  = f.password_field :password
+
+  = f.label :first_name
+  = f.text_field :first_name
+
+  = f.label :last_name
+  = f.text_field :last_name
+
+  = f.submit

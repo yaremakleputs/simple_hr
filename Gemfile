@@ -9,6 +9,8 @@ gem 'devise'
 
 gem 'rails', '~> 5.0.4'
 
+gem 'haml-rails'
+
 gem 'sqlite3'
 
 gem 'puma', '~> 3.0'

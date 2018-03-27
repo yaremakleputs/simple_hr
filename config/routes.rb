@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   authenticated :admin do
     resources :employees, module: 'admin'
+    resources :posts, module: 'admin'
   end
 
   authenticated :employee do

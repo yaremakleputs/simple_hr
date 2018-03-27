@@ -1,0 +1,16 @@
+.container
+  .row
+    .col
+      %table.table
+        %thead
+          %th= ''
+          %th= 'First name'
+          %th= 'Last name'
+          %th= 'Actions'
+        %tbody
+          - @employees.each_with_index do |employee, index|
+            %tr
+              %td= index + 1
+              %td= employee.first_name
+              %td= employee.last_name
+              %td= ''

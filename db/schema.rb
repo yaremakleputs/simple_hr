@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180326230339) do
+ActiveRecord::Schema.define(version: 20180327032032) do
+
+  create_table "employee_posts", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.integer  "post_id"
+    t.boolean  "seen",        default: false, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["employee_id"], name: "index_employee_posts_on_employee_id"
+    t.index ["post_id"], name: "index_employee_posts_on_post_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "text"
+    t.integer  "admin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_posts_on_admin_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",              default: "", null: false

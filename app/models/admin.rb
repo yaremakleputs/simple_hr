@@ -1,1 +1,3 @@
-class Admin < User; end
+class Admin < User
+  has_many :posts
+end

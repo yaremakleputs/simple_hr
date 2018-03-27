@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employee: one
+  post: one
+  seen: false
+
+two:
+  employee: two
+  post: two
+  seen: false

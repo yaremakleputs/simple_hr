@@ -1,6 +1,36 @@
-%nav
-  = 'Navigation'
-  - if admin_signed_in?
-    = link_to 'Log out', destroy_admin_session_path, method: :delete
-  - if employee_signed_in?
-    = link_to 'Log out', destroy_employee_session_path, method: :delete
+%header
+  #slide-out.side-nav.sn-bg-4.fixed
+    %ul.custom-scrollbar
+      %li
+        %ul.collapsible.collapsible-accordion
+          %li
+            %a.collapsible-header.waves-effect.arrow-r
+              %i.fa.fa-chevron-right
+              = 'Employees'
+              %i.fa.fa-angle-down.rotate-icon
+            .collapsible-body
+              %ul
+                %li
+                  = link_to 'Eployees list', employees_path, class: 'waves-effect'
+          %li
+            %a.collapsible-header.waves-effect.arrow-r
+              %i.fa.fa-chevron-right
+              = 'Posts'
+              %i.fa.fa-angle-down.rotate-icon
+            .collapsible-body
+              %ul
+                %li
+                  = link_to 'Posts list', posts_path, class: 'waves-effect'
+                  = link_to 'New osts', new_post_path, class: 'waves-effect'
+          %li
+            %a.collapsible-header.waves-effect.arrow-r
+              %i.fa.fa-chevron-right
+              = 'Profile'
+              %i.fa.fa-angle-down.rotate-icon
+            .collapsible-body
+              %ul
+                %li
+                  - if admin_signed_in?
+                    = link_to 'Log out', destroy_admin_session_path, method: :delete
+                  - if employee_signed_in?
+                    = link_to 'Log out', destroy_employee_session_path, method: :delete

@@ -1,0 +1,15 @@
+= form_for @post do |f|
+  - if @post.errors.any?
+    #error_explanation.callout.alert
+      %h2=t('error_explanation', count: @post.errors.count)
+      %ul
+        - @post.errors.full_messages.each do |message|
+          %li= message
+
+  = f.label :title
+  = f.text_field :title
+
+  = f.label :text
+  = f.text_area :text
+
+  = f.submit

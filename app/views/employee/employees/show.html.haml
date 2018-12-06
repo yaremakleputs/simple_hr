@@ -1,0 +1,14 @@
+.container
+  .row.align-content-center
+    .col-8
+      .card.testimonial-card
+        .card-up.indigo.lighten-1
+        .avatar.mx-auto.white
+          = image_tag 'img_ava.jpg', class: 'rounded-circle'
+
+        .card-body
+          %h4.card-title= @employee.first_name + ' ' + @employee.last_name
+          %hr
+          %p
+            %i.fa.fa-quote-left
+            = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci'

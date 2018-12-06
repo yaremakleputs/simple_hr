@@ -13,14 +13,7 @@
     = f.text_area :text, class: 'form-control'
     = f.label :text
 
-    -#= f.select :employee_ids, Employee.all.map { |employee| ["#{employee.first_name} #{employee.last_name}", employee.id] }, {},
-    -#                          { class: 'mdb-select md-form colorful-select dropdown-primary', multiple: true }
 
-    = f.fields_for :employee_posts, f.object.employee_posts.build do |ff|
-      = ff.collection_select :employee_id, Employee.all, :id, :first_name, prompt: 'Select an Employee'
-      - unless ff.object.new_record?
-        = ff.label :_delete, 'Remove:'
-        = ff.check_box :_delete
 
     = f.submit
 

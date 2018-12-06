@@ -36,7 +36,11 @@ class Admin
     end
 
     def destroy
-      @employee.destroy!
+      if @employee.destroy
+        redirect_to employees_path
+      else
+        render 'index'
+      end
     end
 
     private

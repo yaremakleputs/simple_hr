@@ -1,22 +1,29 @@
-.md-form
-  = form_for @employee do |f|
-    - if @employee.errors.any?
-      #error_explanation.callout.alert
-        %h2=t('error_explanation', count: @employee.errors.count)
-        %ul
-          - @employee.errors.full_messages.each do |message|
-            %li= message
+.card
 
-    = f.label :email
-    = f.email_field :email
+  %h5.card-header.info-color.white-text.text-center.py-4
+    %strong
+      = @admin.first_name + ' ' + @admin.last_name
 
-    = f.label :password
-    = f.password_field :password
+  .card-body.px-lg-5.pt-0
 
-    = f.label :first_name
-    = f.text_field :first_name
+    = form_for(@admin, html: { class: 'md-form', style: 'color: #757575;' }) do |f|
+      - if @admin.errors.any?
+        #error_explanation.callout.alert
+          %h2=t('error_explanation', count: @admin.errors.count)
+          %ul
+            - @admin.errors.full_messages.each do |message|
+              %li= message
 
-    = f.label :last_name
-    = f.text_field :last_name
+      = f.email_field :email, class: 'form-control'
+      = f.label :email
 
-    = f.submit
+      = f.password_field :password, class: 'form-control'
+      = f.label :password
+
+      = f.text_field :first_name, class: 'form-control'
+      = f.label :first_name
+
+      = f.text_field :last_name, class: 'form-control'
+      = f.label :last_name
+
+      = f.submit 'Save', class: 'btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0'

@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+
+//= require cable
 //= require bootstrap
 //= require mdb
+//= require popper.min
+//= require turbolinks

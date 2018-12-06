@@ -52,8 +52,8 @@ class Admin
     end
 
     def post_param
-      params.require(:post).permit(:title, :text,
-        employee_posts_attributes: [:id, :employee_id, :_destroy])
+      params.require(:post).permit(:title, :text, #employee_ids: [],
+        employee_posts_attributes: [:id, :_destroy])
     end
   end
 end

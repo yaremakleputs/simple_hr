@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :employees
 
   authenticated :admin do
-    resources :admins, module: 'admin', exept: [:index, :destroy, :new]
+    resources :admins, module: 'admin', only: [:show, :edit, :update]
     resources :employees, module: 'admin'
     resources :posts, module: 'admin'
   end

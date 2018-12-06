@@ -1,6 +1,6 @@
 %nav.navbar.navbar-expand-lg.navbar-dark.primary-color
   %a.navbar-brand{ href: "#" }
-    = 'Navbar'
+    = 'Simple HR'
 
   %button.navbar-toggler{ type: "button", 'data-toggle': "collapse", 'data-target': "#basicExampleNav", 'aria-controls': "basicExampleNav", 'aria-expanded': "false", 'aria-label': "Toggle navigation" }
     %span.navbar-toggler-icon
@@ -8,14 +8,25 @@
   .collapse.navbar-collapse#basicExampleNav
 
     %ul.navbar-nav.mr-auto
-      %li.nav-item.active
-        = link_to 'Profile', employees_path, class: 'nav-link waves-effect'
-      %li.nav-item.active
-        = link_to 'Eployees', employees_path, class: 'nav-link waves-effect'
-      %li.nav-item
-        = link_to 'Posts list', posts_path, class: 'nav-link waves-effect'
-      %li.nav-item
+      - if current_user
+        %li.nav-item.active
+          - if admin_signed_in?
+            = link_to 'Profile', admin_path(current_admin), class: 'nav-link waves-effect'
+          - if employee_signed_in?
+            = link_to 'Profile', employee_path(current_employee), class: 'nav-link waves-effect'
         - if admin_signed_in?
-          = link_to 'Log out', destroy_admin_session_path, method: :delete, class: 'nav-link waves-effect'
-        - if employee_signed_in?
-          = link_to 'Log out', destroy_employee_session_path, method: :deletenav, class: 'nav-link waves-effect'
+          %li.nav-item
+            = link_to 'Eployees', employees_path, class: 'nav-link waves-effect'
+        %li.nav-item
+          = link_to 'Posts list', posts_path, class: 'nav-link waves-effect'
+        %li.nav-item
+          - if admin_signed_in?
+            = link_to 'Log out', destroy_admin_session_path, method: :delete, class: 'nav-link waves-effect'
+          - if employee_signed_in?
+            = link_to 'Log out', destroy_employee_session_path, method: :delete, class: 'nav-link waves-effect'
+      - else
+        %li.nav-item
+          = link_to 'Log in as an employee', new_employee_session_path, class: 'nav-link waves-effect'
+        %li.nav-item
+          = link_to 'Log in as admin', new_admin_session_path, class: 'nav-link waves-effect'
+

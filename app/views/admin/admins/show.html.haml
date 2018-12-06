@@ -7,8 +7,10 @@
           = image_tag 'img_ava.jpg', class: 'rounded-circle'
 
         .card-body
-          %h4.card-title= @employee.first_name + ' ' + @employee.last_name
+          %h4.card-title= @admin.first_name + ' ' + @admin.last_name
           %hr
           %p
             %i.fa.fa-quote-left
-            = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci'
+            = @admin.email
+          %p
+            = link_to 'Edit', edit_admin_path(@admin), class: 'btn btn-outline-info waves-effect'

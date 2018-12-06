@@ -15,9 +15,10 @@
               %td= employee.last_name
               %td
                 .actions
-                  = link_to 'Show', employee
-                  = link_to 'Edit', edit_employee_path(employee)
+                  = link_to 'Show', employee, class: 'btn btn-outline-info waves-effect btn-sm'
+                  = link_to 'Edit', edit_employee_path(employee), class: 'btn btn-outline-warning waves-effect btn-sm'
                   = link_to 'Destroy', employee, method: :delete,
-                                                 data: { confirm: 'Are you sure?' }
+                                                 data: { confirm: 'Are you sure?' },
+                                                 class: 'btn btn-outline-danger waves-effect btn-sm'
   .row
-    = link_to 'New employee', new_employee_path
+    = link_to 'New employee', new_employee_path, class: 'btn btn-outline-info waves-effect'

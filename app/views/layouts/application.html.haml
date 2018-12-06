@@ -4,13 +4,12 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title SimpleHr
     = csrf_meta_tags
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
   %body.fixed-sn.light-blue-skin
     = render 'layouts/header'
+
     .container
       .row
-        .col-2
-          = render 'layouts/sidebar'
-        .col-10
+        .col-12
           = yield

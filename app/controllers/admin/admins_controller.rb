@@ -2,51 +2,28 @@ class Admin
   class AdminsController < ApplicationController
     before_action :set_admin, only: [:edit, :show, :update]
 
-    def index
-      @employees = Employee.all
-    end
-
-    def new
-      @employee ||= Employee.new
-    end
-
     def show; end
-
-    def create
-      @employee = Employee.new(employee_param)
-      if @employee.save
-        flash[:success] = 'Employee saved'
-        redirect_to employees_path
-      else
-        flash[:error] = @employee.errors.full_messages
-        render 'new'
-      end
-    end
 
     def edit; end
 
     def update
-      if @employee.update(employee_param)
+      if @admin.update(employee_param)
         flash[:success] = 'Employee updated'
-        redirect_to employee_path(@employee)
+        redirect_to admins_path(@admin)
       else
-        flash[:error] = @employee.errors.full_messages
+        flash[:error] = @admin.errors.full_messages
         render 'edit'
       end
     end
 
-    def destroy
-      @employee.destroy!
-    end
-
     private
 
-    def set_employee
-      @employee ||= Employee.find(params[:id])
+    def set_admin
+      @admin ||= current_admin
     end
 
-    def employee_param
-      params.require(:employee).permit(:first_name, :last_name,
+    def admin_param
+      params.require(:admin).permit(:first_name, :last_name,
                                        :email, :password)
     end
   end

@@ -1,5 +1,5 @@
-.md-form
-  = form_for @post do |f|
+.card-body.px-lg-10.pt-0
+  = form_for @post, html: { class: 'md-form', style: 'color: #757575;' } do |f|
     - if @post.errors.any?
       #error_explanation.callout.alert
         %h2=t('error_explanation', count: @post.errors.count)
@@ -7,17 +7,20 @@
           - @post.errors.full_messages.each do |message|
             %li= message
 
+    = f.text_field :title, class: 'form-control'
     = f.label :title
-    = f.text_field :title
 
+    = f.text_area :text, class: 'form-control'
     = f.label :text
-    = f.text_area :text
 
-    %div
-      / = f.collection_select :employee_ids, options_for_select(@employee_ids, @employee_ids)
-      = f.collection_select(:employee_ids, :employee_id, Employee.all, :id, prompt: true)
-      / = f.fields_for :employee_posts, f.object.employee_posts.build do |ff|
-      /   - @employee_ids.each do |id|
-      /     = ff.check_box :employee_id, value: id
+    -#= f.select :employee_ids, Employee.all.map { |employee| ["#{employee.first_name} #{employee.last_name}", employee.id] }, {},
+    -#                          { class: 'mdb-select md-form colorful-select dropdown-primary', multiple: true }
+
+    = f.fields_for :employee_posts, f.object.employee_posts.build do |ff|
+      = ff.collection_select :employee_id, Employee.all, :id, :first_name, prompt: 'Select an Employee'
+      - unless ff.object.new_record?
+        = ff.label :_delete, 'Remove:'
+        = ff.check_box :_delete
 
     = f.submit
+

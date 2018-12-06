@@ -1,6 +1,7 @@
 class Admin
   class PostsController < ApplicationController
     before_action :set_post, only: [:edit, :show, :update, :destroy]
+    before_action :set_employees, except: :index
 
     def index
       @posts = current_admin.posts
@@ -8,6 +9,7 @@ class Admin
 
     def new
       @post ||= current_admin.posts.new
+      @employee_ids = Employee.all.ids
     end
 
     def show; end
@@ -45,8 +47,13 @@ class Admin
       @post ||= current_admin.posts.find(params[:id])
     end
 
+    def set_employees
+      @employee_ids = Employee.all.ids
+    end
+
     def post_param
-      params.require(:post).permit(:title, :text)
+      params.require(:post).permit(:title, :text,
+        employee_posts_attributes: [:id, :employee_id, :_destroy])
     end
   end
 end

@@ -1,15 +1,23 @@
-= form_for @post do |f|
-  - if @post.errors.any?
-    #error_explanation.callout.alert
-      %h2=t('error_explanation', count: @post.errors.count)
-      %ul
-        - @post.errors.full_messages.each do |message|
-          %li= message
+.md-form
+  = form_for @post do |f|
+    - if @post.errors.any?
+      #error_explanation.callout.alert
+        %h2=t('error_explanation', count: @post.errors.count)
+        %ul
+          - @post.errors.full_messages.each do |message|
+            %li= message
 
-  = f.label :title
-  = f.text_field :title
+    = f.label :title
+    = f.text_field :title
 
-  = f.label :text
-  = f.text_area :text
+    = f.label :text
+    = f.text_area :text
 
-  = f.submit
+    %div
+      / = f.collection_select :employee_ids, options_for_select(@employee_ids, @employee_ids)
+      = f.collection_select(:employee_ids, :employee_id, Employee.all, :id, prompt: true)
+      / = f.fields_for :employee_posts, f.object.employee_posts.build do |ff|
+      /   - @employee_ids.each do |id|
+      /     = ff.check_box :employee_id, value: id
+
+    = f.submit

@@ -1,0 +1,21 @@
+%nav.navbar.navbar-expand-lg.navbar-dark.primary-color
+  %a.navbar-brand{ href: "#" }
+    = 'Navbar'
+
+  %button.navbar-toggler{ type: "button", 'data-toggle': "collapse", 'data-target': "#basicExampleNav", 'aria-controls': "basicExampleNav", 'aria-expanded': "false", 'aria-label': "Toggle navigation" }
+    %span.navbar-toggler-icon
+
+  .collapse.navbar-collapse#basicExampleNav
+
+    %ul.navbar-nav.mr-auto
+      %li.nav-item.active
+        = link_to 'Profile', employees_path, class: 'nav-link waves-effect'
+      %li.nav-item.active
+        = link_to 'Eployees', employees_path, class: 'nav-link waves-effect'
+      %li.nav-item
+        = link_to 'Posts list', posts_path, class: 'nav-link waves-effect'
+      %li.nav-item
+        - if admin_signed_in?
+          = link_to 'Log out', destroy_admin_session_path, method: :delete, class: 'nav-link waves-effect'
+        - if employee_signed_in?
+          = link_to 'Log out', destroy_employee_session_path, method: :deletenav, class: 'nav-link waves-effect'

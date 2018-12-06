@@ -22,17 +22,17 @@ ActiveRecord::Schema.define(version: 20180327032902) do
     t.index ["post_id"], name: "index_employee_posts_on_post_id"
   end
 
-  create_table "employees_groups", force: :cascade do |t|
-    t.integer "employee_id"
-    t.integer "group_id"
-    t.index ["employee_id"], name: "index_employees_groups_on_employee_id"
-    t.index ["group_id"], name: "index_employees_groups_on_group_id"
-  end
-
   create_table "groups", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "groups_users", force: :cascade do |t|
+    t.integer "employee_id"
+    t.integer "group_id"
+    t.index ["employee_id"], name: "index_groups_users_on_employee_id"
+    t.index ["group_id"], name: "index_groups_users_on_group_id"
   end
 
   create_table "posts", force: :cascade do |t|
